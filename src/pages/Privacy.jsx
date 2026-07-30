@@ -4,7 +4,13 @@ import Footer from '../components/Footer'
 
 export default function Privacy() {
   useEffect(() => {
+    const previousTitle = document.title
+    document.title = 'LISA® Communicator Privacy Policy | Asgard Dynamics'
     window.scrollTo(0, 0)
+
+    return () => {
+      document.title = previousTitle
+    }
   }, [])
 
   return (
@@ -26,7 +32,7 @@ export default function Privacy() {
                 Dynamics for people who communicate using eye movements.
               </p>
               <p>
-                This Privacy Policy explains how LISA Version 1 uses the device camera, what
+                This Privacy Policy explains how LISA® Communicator uses the device camera, what
                 information is stored on the device, and how optional feedback is handled.
               </p>
             </section>
@@ -146,6 +152,11 @@ export default function Privacy() {
                 <a href="https://asgarddynamics.io">https://asgarddynamics.io</a>
               </p>
             </section>
+
+            <p className="privacy-page__copyright">
+              © 2026 Asgard Dynamics. LISA® Communicator is a product of Asgard Dynamics. All rights
+              reserved.
+            </p>
           </div>
         </div>
       </main>
