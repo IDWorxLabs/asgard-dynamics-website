@@ -1,12 +1,31 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Capabilities', href: '#capabilities' },
-  { label: 'Products', href: '#products' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', hash: '#about' },
+  { label: 'Capabilities', hash: '#capabilities' },
+  { label: 'Products', hash: '#products' },
+  { label: 'Contact', hash: '#contact' },
 ]
+
+function SectionLink({ hash, children, onClick }) {
+  const { pathname } = useLocation()
+
+  if (pathname === '/') {
+    return (
+      <a href={hash} onClick={onClick}>
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <Link to={{ pathname: '/', hash: hash.slice(1) }} onClick={onClick}>
+      {children}
+    </Link>
+  )
+}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -16,9 +35,9 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header__inner">
-        <a href="#" className="header__logo" aria-label="Asgard Dynamics home">
+        <Link to="/" className="header__logo" aria-label="Asgard Dynamics home" onClick={closeMenu}>
           <img src={logo} alt="Asgard Dynamics" className="logo-img" />
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -34,11 +53,11 @@ export default function Header() {
 
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`} aria-label="Main navigation">
           <ul className="header__links">
-            {NAV_LINKS.map(({ label, href }) => (
-              <li key={href}>
-                <a href={href} onClick={closeMenu}>
+            {NAV_LINKS.map(({ label, hash }) => (
+              <li key={hash}>
+                <SectionLink hash={hash} onClick={closeMenu}>
                   {label}
-                </a>
+                </SectionLink>
               </li>
             ))}
           </ul>

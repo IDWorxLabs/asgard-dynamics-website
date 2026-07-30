@@ -341,6 +341,61 @@ ol {
   gap: 0.875rem;
 }
 
+/* Privacy page */
+.page {
+  min-height: calc(100vh - var(--header-height) - 200px);
+}
+
+.privacy-page {
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0 5rem;
+  background: var(--color-bg);
+}
+
+.privacy-page__inner {
+  max-width: 720px;
+}
+
+.privacy-page__header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.privacy-page__title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.privacy-page__company {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-grey);
+  margin-bottom: 0.375rem;
+}
+
+.privacy-page__updated {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.privacy-page__body {
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+.privacy-page__placeholder {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-grey);
+  padding: 1.25rem 1.5rem;
+  background: var(--color-bg-alt);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+
 /* Sections */
 .section {
   padding: 5rem 0;
