@@ -8,9 +8,22 @@ import Products from '../components/Products'
 import Process from '../components/Process'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
+import { applyPageSeo } from '../utils/seo'
+
+const HOME_TITLE = 'Asgard Dynamics — Forward-built technology'
+const HOME_DESCRIPTION =
+  'Asgard Dynamics builds software products, intelligent systems, automation platforms, and future-focused digital solutions.'
 
 export default function Home() {
   const location = useLocation()
+
+  useEffect(() => {
+    return applyPageSeo({
+      title: HOME_TITLE,
+      description: HOME_DESCRIPTION,
+      canonical: 'https://www.asgarddynamics.io/',
+    })
+  }, [])
 
   useEffect(() => {
     if (location.hash) {

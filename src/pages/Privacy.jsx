@@ -1,16 +1,20 @@
 import { useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { applyPageSeo } from '../utils/seo'
+
+const PAGE_TITLE = 'LISA® Communicator Privacy Policy | Asgard Dynamics'
+const PAGE_DESCRIPTION =
+  'Privacy Policy for LISA® Communicator by Asgard Dynamics. Learn how LISA uses the device camera, stores information locally, and handles optional feedback.'
 
 export default function Privacy() {
   useEffect(() => {
-    const previousTitle = document.title
-    document.title = 'LISA® Communicator Privacy Policy | Asgard Dynamics'
     window.scrollTo(0, 0)
-
-    return () => {
-      document.title = previousTitle
-    }
+    return applyPageSeo({
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      canonical: 'https://www.asgarddynamics.io/lisa/privacy',
+    })
   }, [])
 
   return (
