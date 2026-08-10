@@ -37,6 +37,9 @@ export default function Footer() {
               </li>
             ))}
             <li>
+              <Link to="/lisa">LISA</Link>
+            </li>
+            <li>
               <Link to="/lisa/privacy">Privacy Policy</Link>
             </li>
           </ul>

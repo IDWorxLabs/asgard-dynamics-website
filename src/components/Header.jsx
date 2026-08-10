@@ -3,10 +3,13 @@ import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 const NAV_LINKS = [
-  { label: 'About', hash: '#about' },
-  { label: 'Capabilities', hash: '#capabilities' },
-  { label: 'Products', hash: '#products' },
-  { label: 'Contact', hash: '#contact' },
+  { label: 'Home', type: 'route', to: '/' },
+  { label: 'About', type: 'hash', hash: '#about' },
+  { label: 'Capabilities', type: 'hash', hash: '#capabilities' },
+  { label: 'Products', type: 'hash', hash: '#products' },
+  { label: 'LISA', type: 'route', to: '/lisa' },
+  { label: 'Process', type: 'hash', hash: '#process' },
+  { label: 'Contact', type: 'hash', hash: '#contact' },
 ]
 
 function SectionLink({ hash, children, onClick }) {
@@ -29,6 +32,7 @@ function SectionLink({ hash, children, onClick }) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { pathname } = useLocation()
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -53,11 +57,21 @@ export default function Header() {
 
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`} aria-label="Main navigation">
           <ul className="header__links">
-            {NAV_LINKS.map(({ label, hash }) => (
-              <li key={hash}>
-                <SectionLink hash={hash} onClick={closeMenu}>
-                  {label}
-                </SectionLink>
+            {NAV_LINKS.map((item) => (
+              <li key={item.label}>
+                {item.type === 'route' ? (
+                  <Link
+                    to={item.to}
+                    onClick={closeMenu}
+                    aria-current={pathname === item.to ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <SectionLink hash={item.hash} onClick={closeMenu}>
+                    {item.label}
+                  </SectionLink>
+                )}
               </li>
             ))}
           </ul>
